@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Detalle del Alumno</title>
+</head>
+<body>
+<h1>Detalle del Alumno</h1>
+<div>
+  <p>ID: <span th:text="${alumnos.id}"></span></p>
+  <p>Nombre: <span th:text="${alumnos.nombre}"></span></p>
+  <p>Apellido: <span th:text="${alumnos.apellido}"></span></p>
+  <p>Edad: <span th:text="${alumnos.edad}"></span></p>
+  <p>Grado: <span th:text="${alumnos.grado}"></span></p>
+  <p>Sección: <span th:text="${alumnos.seccion}"></span></p>
+  <p>Promedio: <span th:text="${alumnos.promedio}"></span></p>
+</div>
+<a href="/lista-alumnos">Volver a la lista</a>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Alumnos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    .button {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h1>Lista de Alumnos</h1>
+<a class="button" th:href="@{/alumnos/agregar}">Agregar Nuevo Alumno</a> <!-- Enlace para agregar nuevo alumno -->
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Edad</th>
+    <th>Sección</th>
+    <th>Grado</th>
+    <th>Promedio</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="alumno : ${alumnos}">
+    <td th:text="${alumno.id}"></td>
+    <td th:text="${alumno.nombre}"></td>
+    <td th:text="${alumno.apellido}"></td>
+    <td th:text="${alumno.edad}"></td>
+    <td th:text="${alumno.seccion}"></td>
+    <td th:text="${alumno.grado}"></td>
+    <td th:text="${alumno.promedio}"></td>
+    <td>
+      <a th:href="@{/alumnos/editar/{id}(id=${alumno.id})}">Editar</a>
+      <a th:href="@{/alumnos/eliminar/{id}(id=${alumno.id})}" onclick="return confirm('¿Estás seguro de que deseas eliminar este alumno?');">Eliminar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p th:text="${mensaje}"></p> <!-- Mensaje de éxito o error -->
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Alumnos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    .button {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h1>Lista de Alumnos</h1>
+<a class="button" th:href="@{/alumnos/agregar}">Agregar Nuevo Alumno</a> <!-- Enlace para agregar nuevo alumno -->
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Edad</th>
+    <th>Sección</th>
+    <th>Grado</th>
+    <th>Promedio</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="alumno : ${alumnos}">
+    <td th:text="${alumno.id}"></td>
+    <td th:text="${alumno.nombre}"></td>
+    <td th:text="${alumno.apellido}"></td>
+    <td th:text="${alumno.edad}"></td>
+    <td th:text="${alumno.seccion}"></td>
+    <td th:text="${alumno.grado}"></td>
+    <td th:text="${alumno.promedio}"></td>
+    <td>
+      <a th:href="@{/alumnos/editar/{id}(id=${alumno.id})}">Editar</a>
+      <form th:action="@{/alumnos/eliminar/{id}(id=${alumno.id})}" method="post" onsubmit="return confirm('¿Estás seguro de querer eliminar este alumno?');">
+        <input type="hidden" name="_method" value="delete"/>
+        <button type="submit">Eliminar</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p th:text="${mensaje}"></p> <!-- Mensaje de éxito o error -->
+</body>
+</html>
